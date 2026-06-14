@@ -9,7 +9,7 @@ export default function useSocket(onEvent) {
   useEffect(() => {
     if (!user) return;
 
-    const socket = io('http://localhost:5000', { transports: ['websocket', 'polling'] });
+    const socket = io(import.meta.env.VITE_SOCKET_URL || undefined, { transports: ['websocket', 'polling'] });
     socketRef.current = socket;
     socket.emit('join', user.id);
 
